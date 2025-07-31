@@ -22,12 +22,7 @@
 
 #define WIDTH 500
 #define HEIGHT 400
-
-typedef struct s_window
-{
-    void    *mlx;
-    void    *window;
-}   t_window;
+#define FOV_SCALE 0.577
 
 typedef struct s_texture
 {
@@ -59,12 +54,38 @@ typedef struct s_pc
 {
     float   posX;
     float   posY;
+    int     mapX;
+    int     mapY;
     float   dirX;
     float   dirY;
-    float   angle_fov;
     float   planeX;
     float   planeY;
+    float   cameraX;
+    float   rayDirX;
+    float   rayDirY;
+    float   deltaDistX;
+    float   deltaDistY;
+    float   sideDistX;
+    float   sideDistY;
+    int     hit;
+    int     stepX;
+    int     stepY;
+    float   lineHeight;
 }   t_pc;
+
+
+typedef struct s_win
+{
+    void    *mlx;
+    void    *window;
+    void    *img;
+    int     *data_pixel;
+    int     bpp;
+    int     size_line;
+    int     endian;
+    t_pc    *pc;
+    t_input *input;
+}   t_win;
 
 //CHECK_DIRECTION.C
 void	check_north(t_input *in, int *elements, int *indxs, char *dir);
@@ -102,5 +123,12 @@ int		check_input(int argc, char **argv);
 int     set_elements(int *elements, int toggle);
 void	print_data(t_input *input);
 int		parse_cub3d(int argc, char **argv, t_input *input);
+
 //READ_MAP.C
-void    ft_read_map(t_input *input);
+void    ft_read_map(t_input *input, t_pc *pc);
+//RAYS.C
+void    ft_rays(t_pc *pc, t_input *input, t_win *win);
+//DISPLAY.C
+void    ft_display(t_pc *pc, t_win *win, int x);
+int     ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
+

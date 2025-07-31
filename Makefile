@@ -23,7 +23,7 @@ SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 parsing/check_direction.c parsing/input_file.c parsing/inspect.c \
 parsing/line.c parsing/messages.c \
 parsing/parsing_map.c parsing/parsing_utils.c parsing/parsing.c \
-main.c read_map.c
+main.c read_map.c rays.c display.c
 
 OBJS = $(SRCS:.c=.o)
 
