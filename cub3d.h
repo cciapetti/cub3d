@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/25 18:11:05 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:59:41 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,12 @@
 
 #define WIDTH 500
 #define HEIGHT 400
-#define FOV_SCALE 0.577
 
-typedef struct s_win
+typedef struct s_window
 {
     void    *mlx;
     void    *window;
-    void    *img;
-    int     *data_pixel;
-    int     bpp;
-    int     size_line;
-    int     endian;
-}   t_win;
+}   t_window;
 
 typedef struct s_texture
 {
@@ -44,6 +38,7 @@ typedef struct s_texture
 typedef struct s_skyfloor
 {
     char    id;
+    char    *line;
     int		rgb_r;
     int		rgb_g;
     int		rgb_b;
@@ -52,6 +47,7 @@ typedef struct s_skyfloor
 typedef struct s_input
 {
     char		**map;
+    int         map_len;
 	char		**file;
 	t_texture	t[4];
 	t_skyfloor	sky;
@@ -63,52 +59,48 @@ typedef struct s_pc
 {
     float   posX;
     float   posY;
-    int     mapX;
-    int     mapY;
     float   dirX;
     float   dirY;
+    float   angle_fov;
     float   planeX;
     float   planeY;
-    float   cameraX;
-    float   rayDirX;
-    float   rayDirY;
-    float   deltaDistX;
-    float   deltaDistY;
-    float   sideDistX;
-    float   sideDistY;
-    int     hit;
-    int     stepX;
-    int     stepY;
-    float   lineHeight;
 }   t_pc;
 
-
-//MANAGER.C
-
 //CHECK_DIRECTION.C
-int     check_direction(t_input *input, int *elements, int *indxs, char *dir);
-int     check_north(int *elements, char *dir);
-int     check_south(int *elements, char *dir);
-int     check_west(int *elements, char *dir);
-int     check_east(int *elements, char *dir);
+void	check_north(t_input *in, int *elements, int *indxs, char *dir);
+void	check_south(t_input *in, int *elements, int *indxs, char *dir);
+void	check_west(t_input *in, int *elements, int *indxs, char *dir);
+void	check_east(t_input *in, int *elements, int *indxs, char *dir);
 //INPUT_FILE.C
 int		ft_get_file_rows(int fd);
 char	**ft_get_file(int fd, int dim);
+void	ft_get_map(t_input *input, int *indxs);
 //INSPECT.C
 int     inspect_file(t_input *input);
+int     inspect_line(t_input *input, int *elements, int *indxs);
+int     inspect_map(t_input *input);
+int     inspect_textures(t_input *input);
+int     inspect_bgcolors(t_input *input);
+//LINE.C
+int     is_dir_line(t_input *input, int *elements, int *indxs, char *dir);
+int     is_skyfloor_line(t_input *input, int *elements, int *indxs, char *dir);
 //MESSAGES.C
-void	messages_error(int err);
-void	print_matrix(t_input *input);
+void	message_error(int err);
+void	print_matrix(t_input *input, int toggle);
+//PARSING_MAP.C
+int	    closed_dx(char *line);
+int	    closed_sx(char *line);
+int     closed_updown(t_input *input);
+int     is_closed(t_input *in);
+//PARSING_UTILS.C
+void    remove_newlines(t_input *input);
+int		find_char(char *str, char *chars, int flag);
+char	*ft_strdup2(char *s, int len);
+char	**ft_split2(char const *s, char c);
 //PARSING.C
 int		check_input(int argc, char **argv);
-int	    check_field(t_input *input, int *elements, int *indxs, char *dir);
 int     set_elements(int *elements, int toggle);
+void	print_data(t_input *input);
 int		parse_cub3d(int argc, char **argv, t_input *input);
-
 //READ_MAP.C
-void    ft_read_map(t_input *input, t_pc *pc);
-//RAYS.C
-void    ft_rays(t_pc *pc, t_input *input, t_win *win);
-//DISPLAY.C
-void    ft_display(t_pc *pc, t_win *win, int x);
-
+void    ft_read_map(t_input *input);

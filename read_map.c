@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:41:32 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/24 18:05:42 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:09:45 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,35 @@ static void ft_det_dir(t_pc *pc, char c)
         pc->dirX = -1;
         pc->dirY = 0;
     }
+    pc->angle_fov = 0.66;
 }
 
 
-void    ft_read_map(t_input *input, t_pc *pc)
+void    ft_read_map(t_input *input)
 {
     int     i;
     int     j;
     char    *str;
+    t_pc    pc;
 
     str = "NSEW";
     i = -1;
     while(++i < input->file_rows)
     {
         j = -1;
-        while (input->file[i][++j] != '\n')
+        while (input->file[i][++j] != '\0')
         {
             if (ft_search_letter(input->file[i][j], str) != 0)
             {
                 char c = ft_search_letter(input->file[i][j], str); //riga da togliere
-                pc->posX = j + 0.5;
-                pc->posY = i + 0.5;
-                pc->mapX = (int)pc->posX;
-                pc->mapY = (int)pc->posY;
-                ft_det_dir(pc, ft_search_letter(input->file[i][j], str));
-                printf("\nTrovata %c in posizione %f %f\ncon direzione %f %f\n", c, pc->posX, pc->posY, pc->dirX, pc->dirY);
+                pc.posX = i;
+                pc.posY = j;
+                ft_det_dir(&pc, ft_search_letter(input->file[i][j], str));
+                printf("\nTrovata %c in posizione %f %f\ncon direzione %f %f\n", c, pc.posX, pc.posY, pc.dirX, pc.dirY);
             }
         }
     }
-    pc->planeX = pc->dirY * FOV_SCALE;
-    pc->planeY = -pc->dirX * FOV_SCALE;
-    printf("planeX %f\nplaneY %f\n", pc->planeX, pc->planeY);
+    pc.planeX = pc.dirY * pc.angle_fov;
+    pc.planeY = -pc.dirX * pc.angle_fov;
+    printf("planeX %f\nplaneY %f\n", pc.planeX, pc.planeY);
 }

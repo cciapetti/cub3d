@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/25 18:35:38 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:17:26 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int ft_exit(int key, void *arg)
 {
-    t_win   *win;
-    win = (t_win *)arg;
+    t_window   *win;
+    win = (t_window *)arg;
 
     if (key == XK_Escape)
     {
@@ -29,9 +29,9 @@ int ft_exit(int key, void *arg)
 
 int ft_clean(void *arg)
 {
-    t_win	*win;
+    t_window	*win;
 
-	win = (t_win *)arg;
+	win = (t_window *)arg;
 	mlx_destroy_window(win->mlx, win->window);
 	mlx_destroy_display(win->mlx);
 	exit(0);
@@ -41,19 +41,15 @@ int ft_clean(void *arg)
 int main(int argc, char **argv)
 {
     t_input		input;
-    t_win       win;
-    t_pc        pc;
+    // t_window    win;
     
     parse_cub3d(argc, argv, &input);
-    ft_read_map(&input, &pc);
-    win.mlx = mlx_init();
-    win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
-    win.img = mlx_new_image(win.mlx, WIDTH, HEIGHT);
-    win.data_pixel = (int *)mlx_get_data_addr(win.img, &win.bpp, &win.size_line, &win.endian);
-    ft_rays(&pc, &input, &win);
-    mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
-    mlx_hook(win.window, KeyPress, KeyPressMask, ft_exit, &win);
-	mlx_hook(win.window, 17, 0, ft_clean, &win);
-    mlx_loop(win.mlx);
+    // ft_read_map(&input);
+    // win.mlx = mlx_init();
+    // win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
+    // mlx_hook(win.window, KeyPress, KeyPressMask, ft_exit, &win);
+	// mlx_hook(win.window, 17, 0, ft_clean, &win);
+
+    // mlx_loop(win.mlx);
     
 }
