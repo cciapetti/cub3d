@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:52:49 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/31 17:38:06 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:12:14 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,25 @@ int ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc)
     i = 0;
     (void)pc;
     if (input->map[map_rayY][map_rayX] == '1')
-    return (1);
-        // return (printf("trovato muro in [%d, %d] [%f. %f]\n", map_rayY, map_rayX, pc->posX, pc->posY), 1);
-    // else
-    // {
-    //     // printf("Avanzo...");
-    // }
+    {
+        // printf("Trovato muro in [%d][%d]\n", map_rayY, map_rayX);
+        printf("Posizione %f %f\n", pc->posX, pc->posY);
+        return (1);
+    }
+    return (0);
+}
+
+int ft_check_map_ray(int map_rayX, int map_rayY, t_input *input, t_pc *pc)
+{
+    int i;
+
+    i = 0;
+    (void)pc;
+    if (input->map[map_rayY][map_rayX] == '1')
+    {
+        // printf("Trovato muro per il raggio in [%d][%d]\n", map_rayY, map_rayX);
+        return (1);
+    }
     return (0);
 }
 
@@ -75,16 +88,16 @@ void    ft_evaluate_distance(t_pc *pc, float distance, char side)
     if (side == 'v')
     {
         distance = pc->sideDistX - pc->deltaDistX;
-        printf("sideDistX: %f  deltaDistX: %f Distanza: %f  ", pc->sideDistX, pc->deltaDistX, distance);
+        // printf("sideDistX: %f  deltaDistX: %f Distanza: %f  ", pc->sideDistX, pc->deltaDistX, distance);
     }
     else if (side == 'o')
     {
         distance = pc->sideDistY - pc->deltaDistY;
-        printf("sideDist: %f deltaDistX: %f Distanza: %f  ", pc->sideDistY, pc->deltaDistY, distance);
+        // printf("sideDist: %f deltaDistX: %f Distanza: %f  ", pc->sideDistY, pc->deltaDistY, distance);
     }
     
     pc->lineHeight = HEIGHT / distance;
-    // printf("lineHeight: %f\n", pc->lineHeight);
+    printf("lineHeight: %f\n", pc->lineHeight);
 }
 
 void    ft_rays(t_pc *pc, t_input *input, t_win *win)
@@ -100,6 +113,8 @@ void    ft_rays(t_pc *pc, t_input *input, t_win *win)
     {
         side = '\0';
         distance = 0;
+        pc->mapX = (int)pc->posX;
+        pc->mapY = (int)pc->posY;
         map_rayX = pc->mapX;
         map_rayY = pc->mapY;
 
@@ -112,16 +127,14 @@ void    ft_rays(t_pc *pc, t_input *input, t_win *win)
                 pc->sideDistX += pc->deltaDistX;
                 map_rayX += pc->stepX;
                 side = 'v'; //colpito lato schermo verticale
-                // printf("DISTNZA minore su X\n");
             }
             else
             {
                 pc->sideDistY += pc->deltaDistY;
                 map_rayY += pc->stepY;
                 side = 'o'; //colpito lato schermo orizzontale
-                // printf("DISTNZA minore su Y\n");
             }
-            pc->hit = ft_check_map(map_rayX, map_rayY, input, pc);
+            pc->hit = ft_check_map_ray(map_rayX, map_rayY, input, pc);
         }
         ft_evaluate_distance(pc, distance, side);
         if (pc->lineHeight > HEIGHT)

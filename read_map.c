@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:41:32 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/31 17:43:41 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:04:16 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void    ft_read_map(t_input *input, t_pc *pc)
     }
     pc->planeX = pc->dirY * FOV_SCALE;
     pc->planeY = -pc->dirX * FOV_SCALE;
-    printf("planeX %f\nplaneY %f\n", pc->planeX, pc->planeY);
+    // printf("planeX %f\nplaneY %f\n", pc->planeX, pc->planeY);
 }

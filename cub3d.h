@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 11:40:59 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 14:26:11 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #define WIDTH 500
 #define HEIGHT 400
 #define FOV_SCALE 0.577
+#define PI 3.14159265358979323846
 
 typedef struct s_texture
 {
@@ -140,3 +141,4 @@ void	ft_rays(t_pc *pc, t_input *input, t_win *win);
 //DISPLAY.C
 void	ft_display(t_pc *pc, t_win *win, int x);
 int		ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
+int     ft_check_map_ray(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
