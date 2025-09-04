@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 14:26:11 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:20:17 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 #define HEIGHT 400
 #define FOV_SCALE 0.577
 #define PI 3.14159265358979323846
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef struct s_texture
 {
@@ -79,7 +88,9 @@ typedef struct s_win
 	void	*mlx;
 	void	*window;
 	void	*img;
+	t_data	*images;
 	int		*data_pixel;
+	int		*tex_pixel;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -139,6 +150,6 @@ void	ft_read_map(t_input *input, t_pc *pc);
 //RAYS.C
 void	ft_rays(t_pc *pc, t_input *input, t_win *win);
 //DISPLAY.C
-void	ft_display(t_pc *pc, t_win *win, int x);
+void	ft_display(t_pc *pc, t_win *win, int x, char side);
 int		ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
 int     ft_check_map_ray(int map_rayX, int map_rayY, t_input *input, t_pc *pc);

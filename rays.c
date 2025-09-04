@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:52:49 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 14:12:14 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:21:55 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void    ft_evaluate_distance(t_pc *pc, float distance, char side)
     }
     
     pc->lineHeight = HEIGHT / distance;
-    printf("lineHeight: %f\n", pc->lineHeight);
+    // printf("lineHeight: %f\n", pc->lineHeight);
 }
 
 void    ft_rays(t_pc *pc, t_input *input, t_win *win)
@@ -139,7 +139,7 @@ void    ft_rays(t_pc *pc, t_input *input, t_win *win)
         ft_evaluate_distance(pc, distance, side);
         if (pc->lineHeight > HEIGHT)
             pc->lineHeight = HEIGHT;
-        ft_display(pc, win, x);
+        ft_display(pc, win, x, side);
         x++;
     }
 }
