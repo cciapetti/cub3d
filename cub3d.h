@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 16:20:17 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:43:15 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,10 @@ typedef struct s_win
 	void	*mlx;
 	void	*window;
 	void	*img;
+	void	*img2;
 	t_data	*images;
 	int		*data_pixel;
-	int		*tex_pixel;
+	int		*data_pixel2;
 	int		bpp;
 	int		size_line;
 	int		endian;

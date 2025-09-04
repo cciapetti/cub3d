@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 16:23:30 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 16:52:05 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    ft_display(t_pc *pc, t_win *win, int x, char side)
 		if (side == 'v')
 		{
 			if (win->pc->rayDirX > 0)
-			    win->data_pixel[c - (WIDTH * i) + x] = create_trgb(0, 255, 95, 95);
+			    win->data_pixel[c - (WIDTH * i) + x] = win->data_pixel2[x];
 			else
 				win->data_pixel[c - (WIDTH * i) + x] = create_trgb(0, 26, 142, 49);
 		}
@@ -50,7 +50,7 @@ void    ft_display(t_pc *pc, t_win *win, int x, char side)
 		if (side == 'v')
 		{
 			if (win->pc->rayDirX > 0)
-			    win->data_pixel[c + (WIDTH * i) + x] = create_trgb(0, 255, 95, 95);
+			    win->data_pixel[c + (WIDTH * i) + x] = win->data_pixel2[x];
 			else
 				win->data_pixel[c + (WIDTH * i) + x] = create_trgb(0, 26, 142, 49);
 		}
