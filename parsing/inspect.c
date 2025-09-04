@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:27:45 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/31 17:04:45 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 11:32:50 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,7 @@ int	inspect_file(t_input *input)
 	indxs[0] = -1;
 	indxs[2] = -1;
 	set_elements(elements, 0);
-	while (++indxs[0] < input->file_rows)
-	{
-		// printf("R: %s\n", input->file[indxs[0]]); --Commentata prima delle vacanze--
-		indxs[1] = 0;
-		while (input->file[indxs[0]][indxs[1]] == ' ' && !(set_elements(elements, 1) == 0))
-			indxs[1]++;
-		if (input->file[indxs[0]][indxs[1]] == '\0' || ft_strlen(input->file[indxs[0]]) == 0)
-			continue;
-		else if (inspect_line(input, elements, indxs) == 1)
-			if (set_elements(elements, 1) == 0)
-				break;		
-	}
+	inspect_file_exe(input, indxs, elements);
 	if (set_elements(elements, 1) == 1)
 		return (1);
 	if (indxs[0] == input->file_rows -1)
@@ -55,7 +44,6 @@ int	inspect_file(t_input *input)
 	indxs[2] = indxs[0];
 	if (indxs[0] == input->file_rows -1)
 		return (1);
-	// printf("inizio mappa riga: %d\n", indxs[2]);
 	ft_get_map(input, indxs);
 	return (0);
 }
@@ -65,13 +53,14 @@ int	inspect_map(t_input *input)
 	int	checks[2];
 	int	indxs[2];
 
-	checks[0] = 0; //controlla se ci sono doppioni di direzioni
+	checks[0] = 0;
 	indxs[0] = -1;
 	while (input->map[++indxs[0]] != NULL)
 	{
-		if (find_char(input->map[indxs[0]], "NSWE01 ", 1) == 0 && input->map[indxs[0]][0] != '\0')//se la linea non e' vuota e trovo un carattere non valido
+		if (find_char(input->map[indxs[0]], "NSWE01 ", 1) == 0 && \
+		input->map[indxs[0]][0] != '\0')
 			return (1);
-		if (find_char(input->map[indxs[0]], "NSWE", 0) == 1)//se trovo una direzione
+		if (find_char(input->map[indxs[0]], "NSWE", 0) == 1)
 		{
 			if (checks[0] == 0)
 				checks[0] = 1;
@@ -88,7 +77,7 @@ int	inspect_textures(t_input *input)
 {
 	int	fd[4];
 	int	toggle;
-	
+
 	toggle = 0;
 	fd[0] = open(input->t[0].texture_path, O_RDONLY);
 	fd[1] = open(input->t[1].texture_path, O_RDONLY);
@@ -105,44 +94,14 @@ int	inspect_textures(t_input *input)
 
 int	inspect_bgcolors(t_input *input)
 {
-	int		i;
-	int		j;
 	char	**rgbsky;
 	char	**rgbfloor;
 
 	rgbsky = ft_split2(input->sky.line, ',');
 	rgbfloor = ft_split2(input->floor.line, ',');
-	i = -1;
-	while (rgbsky[++i] != NULL)
-	{
-		j = -1;
-		while (rgbsky[i][++j] != '\0')
-			if (ft_isdigit(rgbsky[i][j]) == 0)
-				return (1);
-		if (ft_atoi(rgbsky[i]) < 0 || ft_atoi(rgbsky[i]) > 255)
-			return (1);
-	}
-	if (i != 3)
+	if (inspect_bgcolors_exe(rgbsky, &input->sky) == 1)
 		return (1);
-	input->sky.rgb_r = (int)ft_atoi(rgbsky[0]);
-	input->sky.rgb_g = (int)ft_atoi(rgbsky[1]);
-	input->sky.rgb_b = (int)ft_atoi(rgbsky[2]);
-	//printf("\n\nCOLORE CIELO\nR: %d, G: %d, B: %d", input->sky.rgb_r, input->sky.rgb_g, input->sky.rgb_b); --Commentata prima delle vacanze--
-	i = -1;
-	while (rgbfloor[++i] != NULL)
-	{
-		j = -1;
-		while (rgbfloor[i][++j] != '\0')
-			if (ft_isdigit(rgbfloor[i][j]) == 0)
-				return (1);
-		if (ft_atoi(rgbfloor[i]) < 0 || ft_atoi(rgbfloor[i]) > 255)
-			return (1);
-	}
-	if (i != 3)
+	if (inspect_bgcolors_exe(rgbfloor, &input->floor) == 1)
 		return (1);
-	input->floor.rgb_r = (int)ft_atoi(rgbfloor[0]);
-	input->floor.rgb_g = (int)ft_atoi(rgbfloor[1]);
-	input->floor.rgb_b = (int)ft_atoi(rgbfloor[2]);
-	//printf("\n\nCOLORE TERRA\nR: %d, G: %d, B: %d", input->floor.rgb_r, input->floor.rgb_g, input->floor.rgb_b); --Commentata prima delle vacanze--
 	return (0);
 }

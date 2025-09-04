@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:35:50 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/21 16:43:26 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:53:17 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define BUFFER_SIZE 1025
 # endif
 
+char	*ft_freejoin(char *str1, char *str2);
 char	*get_next_line(int fd);
 char	*find_scrap(char *str);
 char	*find_line(char *str);

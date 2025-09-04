@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/07/31 17:40:51 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/04 11:41:30 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,21 +112,25 @@ int ft_clean(void *arg)
 int main(int argc, char **argv)
 {
     t_input		input;
-    t_win       win;
-    t_pc        pc;
+    // t_win       win;
+    // t_pc        pc;
 
-    parse_cub3d(argc, argv, &input);
-    win.pc = &pc;
-    win.input = &input;
-    ft_read_map(&input, &pc);
-    win.mlx = mlx_init();
-    win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
-    win.img = mlx_new_image(win.mlx, WIDTH, HEIGHT);
-    win.data_pixel = (int *)mlx_get_data_addr(win.img, &win.bpp, &win.size_line, &win.endian);
-    ft_rays(&pc, &input, &win);
-    mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
-    mlx_hook(win.window, KeyPress, KeyPressMask, ft_press_key, &win);
-	mlx_hook(win.window, 17, 0, ft_clean, &win);
-    mlx_loop(win.mlx);
-    
+    ft_set_structure(&input);
+	if (parse_cub3d(argc, argv, &input) == 0)
+		clean_parsing(&input);
+	else
+	{
+    	// win.pc = &pc;
+    	// win.input = &input;
+    	// ft_read_map(&input, &pc);
+    	// win.mlx = mlx_init();
+    	// win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
+    	// win.img = mlx_new_image(win.mlx, WIDTH, HEIGHT);
+    	// win.data_pixel = (int *)mlx_get_data_addr(win.img, &win.bpp, &win.size_line, &win.endian);
+    	// ft_rays(&pc, &input, &win);
+    	// mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
+    	// mlx_hook(win.window, KeyPress, KeyPressMask, ft_press_key, &win);
+		// mlx_hook(win.window, 17, 0, ft_clean, &win);
+    	// mlx_loop(win.mlx);
+	}
 }

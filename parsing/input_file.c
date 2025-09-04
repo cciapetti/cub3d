@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 16:18:22 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/31 17:02:45 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 11:32:01 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	ft_get_map(t_input *input, int *indxs)
 {
 	int	i;
 	int	len;
-	
+
 	i = -1;
 	len = -1;
-	input->map = (char **)ft_calloc(sizeof (char *), input->file_rows - indxs[2] + 1);
+	input->map = (char **)ft_calloc(sizeof (char *), \
+	input->file_rows - indxs[2] + 1);
 	while (++i < input->file_rows - indxs[2])
 		if ((int)ft_strlen(input->file[i + indxs[2]]) > len)
 			len = ft_strlen(input->file[i + indxs[2]]);
@@ -65,4 +66,20 @@ void	ft_get_map(t_input *input, int *indxs)
 	while (++i < input->file_rows - indxs[2])
 		input->map[i] = ft_strdup2(input->file[i + indxs[2]], len);
 	input->map[i] = NULL;
+}
+
+void	ft_set_structure(t_input *in)
+{
+	in->map = NULL;
+	in->file = NULL;
+	in->t[0].direction = NULL;
+	in->t[0].texture_path = NULL;
+	in->t[1].direction = NULL;
+	in->t[1].texture_path = NULL;
+	in->t[2].direction = NULL;
+	in->t[2].texture_path = NULL;
+	in->t[3].direction = NULL;
+	in->t[3].texture_path = NULL;
+	in->sky.line = NULL;
+	in->floor.line = NULL;
 }

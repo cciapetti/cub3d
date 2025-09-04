@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:35:44 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/21 16:41:06 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:45:07 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		((unsigned char *)pointer)[i] = '\0';
 	return (pointer);
 }
-
 
 int	check_newline(char *str)
 {

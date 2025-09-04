@@ -6,15 +6,15 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 14:41:02 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/31 17:05:27 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/04 11:20:50 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int check_input(int argc, char **argv)
+int	check_input(int argc, char **argv)
 {
-	int lenght;
+	int	lenght;
 
 	lenght = ft_strlen(argv[1]);
 	if (argc != 2)
@@ -61,33 +61,35 @@ int	set_elements(int *elements, int toggle)
 
 void	print_data(t_input *input)
 {
-	printf("\n\nDIR: %s\nTEXTURE: %s\n\n", input->t[0].direction, input->t[0].texture_path);
-	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[1].direction, input->t[1].texture_path);
-	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[2].direction, input->t[2].texture_path);
-	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[3].direction, input->t[3].texture_path);
+	printf("\n\nDIR: %s\nTEXTURE: %s\n\n", input->t[0].direction, \
+		input->t[0].texture_path);
+	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[1].direction, \
+		input->t[1].texture_path);
+	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[2].direction, \
+		input->t[2].texture_path);
+	printf("DIR: %s\nTEXTURE: %s\n\n", input->t[3].direction, \
+		input->t[3].texture_path);
 	printf("FLOOR: %s\n\n", input->floor.line);
 	printf("SKY: %s\n\n", input->sky.line);
 }
 
-int parse_cub3d(int argc, char **argv, t_input *input)
+int	parse_cub3d(int argc, char **argv, t_input *input)
 {
-    int fd;
+	int	fd;
 
-    if (check_input(argc, argv) != 0)
-        return (0);
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
+	if (check_input(argc, argv) != 0)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
 	{
-		return (message_error(3), 0);		
+		return (message_error(3), 0);
 	}
 	input->file_rows = ft_get_file_rows(fd);
 	close(fd);
-    fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	if (input->file_rows == 0)
 		return (message_error(4), 0);
-	input->file = ft_get_file(fd, input->file_rows);
-	close(fd);
-	remove_newlines(input);
+	parse_cub3d_exe(input, &fd);
 	if (inspect_file(input) == 1)
 		return (message_error(5), 0);
 	if (inspect_map(input) == 1)
@@ -96,6 +98,12 @@ int parse_cub3d(int argc, char **argv, t_input *input)
 		return (message_error(7), 0);
 	if (inspect_bgcolors(input) == 1)
 		return (message_error(8), 0);
-	// print_data(input);		--Commentata prima delle vacanze--
-	return (0);
+	return (1);
+}
+
+void	parse_cub3d_exe(t_input *input, int *fd)
+{
+	input->file = ft_get_file(*fd, input->file_rows);
+	close(*fd);
+	remove_newlines(input);
 }

@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:21:01 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/31 17:02:30 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/03 15:30:58 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	remove_newlines(t_input *input)
 {
-    int     i;
-    int     j;
-    char    *clone;
+	int		i;
+	int		j;
+	char	*clone;
 
 	i = -1;
 	while (++i < input->file_rows)
@@ -28,10 +28,11 @@ void	remove_newlines(t_input *input)
 			input->file[i] = ft_substr(clone, 0, ft_strlen(clone));
 		else
 			input->file[i] = ft_substr(clone, 0, ft_strlen(clone) - 1);
-    }
+		free (clone);
+	}
 }
 
-int		find_char(char *str, char *chars, int flag)
+int	find_char(char *str, char *chars, int flag)
 {
 	int	i;
 	int	j;
@@ -44,7 +45,7 @@ int		find_char(char *str, char *chars, int flag)
 		j = -1;
 		if (flag == 1)
 			toggle = 0;
-		while(chars[++j] != '\0')
+		while (chars[++j] != '\0')
 		{
 			if (str[i] == chars[j])
 				toggle = 1;

@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:35:47 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/02/19 14:47:15 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/03 14:53:35 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,20 @@ char	*solve_problems(char *buffer, char **scrap)
 	}
 }
 
+char	*ft_freejoin(char *str1, char *str2)
+{
+	char	*temp;
+
+	if (str1 != NULL)
+	{
+		temp = ft_strjoin(str1, str2);
+		free (str1);
+		str1 = ft_strdup(temp);
+		free(temp);
+	}
+	return (str1);
+}
+
 char	*get_next_line(int fd)
 {
 	int			bytes_read;
@@ -92,7 +106,7 @@ char	*get_next_line(int fd)
 		bytes_read = read(fd, temp, BUFFER_SIZE);
 		if (bytes_read < 1)
 			return (free(temp), solve_problems(buffer, &scrap));
-		buffer = ft_strjoin(buffer, temp);
+		buffer = ft_freejoin(buffer, temp);
 		free(temp);
 	}
 	scrap = find_scrap(buffer);

@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:43:49 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/07/31 17:01:53 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/03 10:58:48 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	check_north(t_input *in, int *elements, int *indxs, char *dir)
 	int	j;
 
 	j = indxs[1] + 3;
-    if (dir[0] == 'N')
+	if (dir[0] == 'N')
+	{
+		if (elements[0] == 0)
 		{
-			if (elements[0] == 0)
-			{
-				elements[0] = 1;
-				while (in->file[indxs[0]][j] == ' ')
-					j++;
-				in->t[0].texture_path = ft_strdup(&in->file[indxs[0]][j]);
-				in->t[0].direction = ft_strdup("NO");
-			}
-			else
-				elements[0] = -1;		
+			elements[0] = 1;
+			while (in->file[indxs[0]][j] == ' ')
+				j++;
+			in->t[0].texture_path = ft_strdup(&in->file[indxs[0]][j]);
+			in->t[0].direction = ft_strdup("NO");
 		}
+		else
+			elements[0] = -1;
+	}
 }
 
 void	check_south(t_input *in, int *elements, int *indxs, char *dir)
@@ -43,12 +43,12 @@ void	check_south(t_input *in, int *elements, int *indxs, char *dir)
 		{
 			elements[1] = 1;
 			while (in->file[indxs[0]][j] == ' ')
-					j++;
+				j++;
 			in->t[1].texture_path = ft_strdup(&in->file[indxs[0]][j]);
 			in->t[1].direction = ft_strdup("SO");
 		}
 		else
-			elements[1] = -1;			
+			elements[1] = -1;
 	}
 }
 
@@ -68,7 +68,7 @@ void	check_west(t_input *in, int *elements, int *indxs, char *dir)
 			in->t[2].direction = ft_strdup("WE");
 		}
 		else
-			elements[2] = -1;			
+			elements[2] = -1;
 	}
 }
 
@@ -88,6 +88,6 @@ void	check_east(t_input *in, int *elements, int *indxs, char *dir)
 			in->t[3].direction = ft_strdup("EA");
 		}
 		else
-			elements[3] = -1;			
+			elements[3] = -1;
 	}
 }
