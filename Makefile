@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+         #
+#    By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 16:04:07 by cciapett          #+#    #+#              #
-#    Updated: 2025/09/03 15:21:59 by yoherfan         ###   ########.fr        #
+#    Updated: 2025/09/05 18:50:56 by cciapett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ parsing/check_direction.c parsing/clean_parsing.c \
 parsing/input_file.c parsing/inspect.c \
 parsing/inspect2.c parsing/line.c parsing/messages.c \
 parsing/parsing_map.c parsing/parsing_utils.c parsing/parsing.c \
-main.c read_map.c rays.c display.c
+main.c read_map.c rays.c display.c computation.c
 
 OBJS = $(SRCS:.c=.o)
 

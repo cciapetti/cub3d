@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 16:43:15 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:52:18 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,4 +153,8 @@ void	ft_rays(t_pc *pc, t_input *input, t_win *win);
 //DISPLAY.C
 void	ft_display(t_pc *pc, t_win *win, int x, char side);
 int		ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
-int     ft_check_map_ray(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
+//COMPUTATION.C
+void    ft_compute_deltaDist(t_pc *pc, int x);
+void    ft_increment_ray(t_pc *pc);
+void    ft_evaluate_height(t_pc *pc, float distance, char side);
+void    ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side);

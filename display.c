@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 16:52:05 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:34:32 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,42 @@
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	ft_color_sky(t_pc *pc, t_win *win, int x)
+{
+	int	i;
+	int	red;
+	int	blue;
+	int	green;
+
+	i = 0;
+	red = win->input->sky.rgb_r;
+	blue = win->input->sky.rgb_b;
+	green = win->input->sky.rgb_g;
+	while (i < (int)HEIGHT/2 - (int)pc->lineHeight/2)
+    {
+        win->data_pixel[i * WIDTH + x] = create_trgb(100,red, green, blue);
+        i++;
+    }
+}
+
+void	ft_color_floor(t_pc *pc, t_win *win, int x)
+{
+	int	i;
+	int	red;
+	int	blue;
+	int	green;
+	
+	i =  (int)HEIGHT/2 + (int)pc->lineHeight/2;
+	red = win->input->floor.rgb_r;
+	blue = win->input->floor.rgb_b;
+	green = win->input->floor.rgb_g;
+    while (i < HEIGHT)
+    {
+        win->data_pixel[i * WIDTH + x] = create_trgb(100, red, green, blue);
+        i++;
+    }
 }
 
 void    ft_display(t_pc *pc, t_win *win, int x, char side)
@@ -63,16 +99,6 @@ void    ft_display(t_pc *pc, t_win *win, int x, char side)
 		}
         i++;
     }
-    i = 0;
-    while (i < (int)HEIGHT/2 - (int)pc->lineHeight/2)
-    {
-        win->data_pixel[i * WIDTH + x] = create_trgb(100, win->input->sky.rgb_r, win->input->sky.rgb_g, win->input->sky.rgb_b);
-        i++;
-    }
-    i =  (int)HEIGHT/2 + (int)pc->lineHeight/2;
-    while (i < HEIGHT)
-    {
-        win->data_pixel[i * WIDTH + x] = create_trgb(100, win->input->floor.rgb_r, win->input->floor.rgb_g, win->input->floor.rgb_b);
-        i++;
-    }
+	ft_color_sky(pc, win, x);
+	ft_color_floor(pc, win, x);
 }

@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:41:32 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/03 17:04:16 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/05 18:53:56 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,14 @@ void    ft_read_map(t_input *input, t_pc *pc)
         {
             if (ft_search_letter(input->map[i][j], str) != 0)
             {
-                char c = ft_search_letter(input->map[i][j], str); //riga da togliere
                 pc->posX = j + 0.5;
                 pc->posY = i + 0.5;
                 pc->mapX = (int)pc->posX;
                 pc->mapY = (int)pc->posY;
                 ft_det_dir(pc, ft_search_letter(input->map[i][j], str));
-                printf("\nTrovata %c in posizione %f %f\ncon direzione %f %f\n", c, pc->posX, pc->posY, pc->dirX, pc->dirY);
             }
         }
     }
     pc->planeX = pc->dirY * FOV_SCALE;
     pc->planeY = -pc->dirX * FOV_SCALE;
-    // printf("planeX %f\nplaneY %f\n", pc->planeX, pc->planeY);
 }
