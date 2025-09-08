@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:32:40 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/04 11:29:18 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:15:43 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	is_closed(t_input *in)
 
 	i = -1;
 	lim[2] = 0;
+	if (find_char(in->map[++i], "1 \0", 1) == 0)
+		return (0);
 	while (in->map[++i] != NULL)
 	{
 		if ((int)ft_strlen(in->map[i]) == 0)

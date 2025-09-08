@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:27:45 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/04 11:32:50 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/08 09:48:08 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	inspect_file(t_input *input)
 	while (input->file[indxs[0]][0] == '\0' && indxs[0] < input->file_rows - 1)
 		indxs[0]++;
 	indxs[2] = indxs[0];
-	if (indxs[0] == input->file_rows -1)
+	if (indxs[0] == input->file_rows)
 		return (1);
 	ft_get_map(input, indxs);
 	return (0);
@@ -99,9 +99,11 @@ int	inspect_bgcolors(t_input *input)
 
 	rgbsky = ft_split2(input->sky.line, ',');
 	rgbfloor = ft_split2(input->floor.line, ',');
-	if (inspect_bgcolors_exe(rgbsky, &input->sky) == 1)
-		return (1);
-	if (inspect_bgcolors_exe(rgbfloor, &input->floor) == 1)
-		return (1);
+	if ((inspect_bgcolors_exe(rgbsky, &input->sky) == 1) || \
+	inspect_bgcolors_exe(rgbfloor, &input->floor) == 1)
+		return (ft_free_matrix(rgbsky, 0), \
+		ft_free_matrix(rgbfloor, 0), 1);
+	ft_free_matrix(rgbsky, 0);
+	ft_free_matrix(rgbfloor, 0);
 	return (0);
 }
