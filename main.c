@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/04 16:47:54 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:57:25 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,7 @@ int main(int argc, char **argv)
     t_input		input;
     t_win       win;
     t_pc        pc;
-    int         dim;
     
-    dim = 1024;
     ft_set_structure(&input);
 	if (parse_cub3d(argc, argv, &input) == 0)
 		clean_parsing(&input);
@@ -165,7 +163,8 @@ int main(int argc, char **argv)
     	win.mlx = mlx_init();
     	win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
     	win.img = mlx_new_image(win.mlx, WIDTH, HEIGHT);
-    	win.img2 = mlx_xpm_file_to_image(win.mlx, "./textures/face2.xpm", &dim, &dim);
+    	win.img2 = mlx_xpm_file_to_image(win.mlx, "./textures/face2.xpm", &win.tex_width, &win.tex_height);
+        printf("%d       %d\n", win.tex_width, win.tex_height);
     	win.data_pixel = (int *)mlx_get_data_addr(win.img, &win.bpp, &win.size_line, &win.endian);
         win.data_pixel2 = (int *)mlx_get_data_addr(win.img2, &win.bpp, &win.size_line, &win.endian);
     	ft_rays(&pc, &input, &win);

@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/05 18:52:18 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:55:49 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_win
 	int		endian;
 	t_pc	*pc;
 	t_input	*input;
+	int		tex_width;
+	int		tex_height;
 }	t_win;
 
 //CHECK_DIRECTION.C
