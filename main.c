@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 16:18:55 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:32:53 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ static void	load_images(t_win *win)
 	win->data_pixel2 = (int *)mlx_get_data_addr(win->img2, &win->bpp, \
 		&win->size_line, &win->endian);
 }
+
+//   for(int i = 0; i < 11; i++) texture[i].resize(texWidth * texHeight);
 
 int	main(int argc, char **argv)
 {
