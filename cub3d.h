@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 14:55:49 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/09 16:24:42 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define HEIGHT 400
 #define FOV_SCALE 0.577
 #define PI 3.14159265358979323846
+#define STEP 0.125
 
 typedef struct s_data
 {
@@ -154,9 +155,11 @@ void	ft_read_map(t_input *input, t_pc *pc);
 void	ft_rays(t_pc *pc, t_input *input, t_win *win);
 //DISPLAY.C
 void	ft_display(t_pc *pc, t_win *win, int x, char side);
-int		ft_check_map(int map_rayX, int map_rayY, t_input *input, t_pc *pc);
+int		ft_check_map(int map_rayx, int map_rayy, t_input *input);
 //COMPUTATION.C
 void    ft_compute_deltaDist(t_pc *pc, int x);
 void    ft_increment_ray(t_pc *pc);
 void    ft_evaluate_height(t_pc *pc, float distance, char side);
 void    ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side);
+//MOVES.C
+void    ft_moves(int key, t_win *win);
