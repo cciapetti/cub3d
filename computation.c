@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 18:50:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 17:32:43 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:23:11 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,12 @@ void	ft_evaluate_height(t_pc *pc, float distance, char side)
 	else if (side == 'o')
 		distance = pc->sideDistY - pc->deltaDistY;
 	pc->lineHeight = HEIGHT / distance;
+	pc->tex_scale = 1.0;
 	if (pc->lineHeight > HEIGHT)
+	{
 		pc->lineHeight = HEIGHT;
+		pc->tex_scale = (double)HEIGHT / (double) pc->lineHeight;
+	}
 }
 
 void	ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side)

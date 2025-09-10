@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 17:41:02 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:23:19 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	ft_color(double *tex_pos, int tex_x, t_win *win, double step)
 	return (color);
 }
 
+
 void	ft_display(t_pc *pc, t_win *win, int x, char side)
 {
 	int		draw_start;
@@ -73,24 +74,26 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 	double	tex_pos;
 	int		y;
 
-	y = -pc->lineHeight / 2 + HEIGHT / 2 - 1;
-	if (pc->lineHeight < 0)
+	if (pc->lineHeight <= 0)
 		return ;
 	draw_start = -pc->lineHeight / 2 + HEIGHT / 2;
+	y = draw_start - 1;
+	if (draw_start < 0)
+		draw_start = 0;
 	if (side == 'v')
 		wallx = pc->posY + (pc->sideDistX - pc->deltaDistX) * pc->rayDirY;
 	else
 		wallx = pc->posX + (pc->sideDistY - pc->deltaDistY) * pc->rayDirX;
-	wallx -= floor((wallx));
-	tex_x = (int)(wallx * (double)(win->tex_height));
-	if (side == 'v' && pc->rayDirX > 0)
+	wallx -= floor(wallx);
+	tex_x = (int)(wallx * (double)win->tex_width);
+	if (side == 'v' && pc->rayDirX < 0)
 		tex_x = win->tex_width - tex_x - 1;
-	if (side == 'o' && pc->rayDirY < 0)
+	if (side == 'o' && pc->rayDirY > 0)
 		tex_x = win->tex_width - tex_x - 1;
-	step = 1.0 * win->tex_width / pc->lineHeight;
+	step = (win->tex_height / pc->lineHeight) * pc->tex_scale;
 	tex_pos = (draw_start - HEIGHT / 2 + pc->lineHeight / 2) * step;
 	while (++y < pc->lineHeight / 2 + HEIGHT / 2)
-		win->data_pixel[WIDTH * y + x] = ft_color(&tex_pos, tex_x, win, step);
+		win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
 	ft_color_sky(pc, win, x);
 	ft_color_floor(pc, win, x);
 }

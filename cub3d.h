@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 16:24:42 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/10 16:11:05 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #define HEIGHT 400
 #define FOV_SCALE 0.577
 #define PI 3.14159265358979323846
-#define STEP 0.125
+#define STEP 0.1
 
 typedef struct s_data
 {
@@ -82,6 +82,7 @@ typedef struct s_pc
 	int		stepX;
 	int		stepY;
 	float	lineHeight;
+	float	tex_scale;
 }	t_pc;
 
 typedef struct s_win
