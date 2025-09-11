@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 12:17:45 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 14:37:59 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ typedef struct s_win
 	int		tex_width;
 	int		tex_height;
 	int		index_color;
+	int		draw_start;
+	double	tex_pos;
+	int		tex_x;
 }	t_win;
 
 //CHECK_DIRECTION.C
@@ -165,3 +168,7 @@ void    ft_evaluate_height(t_pc *pc, float distance, char side);
 void    ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side);
 //MOVES.C
 void    ft_moves(int key, t_win *win);
+//COLOR.C
+void	ft_color_sky(t_pc *pc, t_win *win, int x);
+void	ft_color_floor(t_pc *pc, t_win *win, int x);
+int		ft_color(t_win *win, double step, int index);
