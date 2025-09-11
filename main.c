@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/10 16:23:36 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:19:14 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_clean(void *arg)
 static void	load_images(t_win *win)
 {
 	win->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
-	win->img2 = mlx_xpm_file_to_image(win->mlx, "./textures/face2.xpm", \
+	win->img2 = mlx_xpm_file_to_image(win->mlx, "./textures/muro_del_bagno.xpm", \
 		&win->tex_width, &win->tex_height);
 	win->data_pixel = (int *)mlx_get_data_addr(win->img, &win->bpp, \
 		&win->size_line, &win->endian);
