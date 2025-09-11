@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/10 16:11:05 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:39:45 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ typedef struct s_win
 	void	*window;
 	void	*img;
 	void	*img2;
-	t_data	*images;
+	t_data	*images[4];
 	int		*data_pixel;
-	int		*data_pixel2;
+	int		*data_pixel2[4];
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -101,6 +101,7 @@ typedef struct s_win
 	t_input	*input;
 	int		tex_width;
 	int		tex_height;
+	int		index_color;
 }	t_win;
 
 //CHECK_DIRECTION.C

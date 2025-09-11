@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/10 16:23:19 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 11:45:34 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,17 @@ int	ft_color(double *tex_pos, int tex_x, t_win *win, double step)
 	int	tex_y;
 	int	color;
 
+	color = 0;
 	tex_y = (int)*tex_pos & (win->tex_height - 1);
 	*tex_pos += step;
-	color = win->data_pixel2[win->tex_width * tex_y + tex_x];
+	if (win->index_color == 0)
+		color = win->data_pixel2[0][win->tex_width * tex_y + tex_x];
+	else if (win->index_color == 1)
+		color = win->data_pixel2[1][win->tex_width * tex_y + tex_x];
+	else if (win->index_color == 2)
+		color = win->data_pixel2[2][win->tex_width * tex_y + tex_x];
+	else if (win->index_color == 3)
+		color = win->data_pixel2[3][win->tex_width * tex_y + tex_x];
 	return (color);
 }
 
@@ -93,7 +101,35 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 	step = (win->tex_height / pc->lineHeight) * pc->tex_scale;
 	tex_pos = (draw_start - HEIGHT / 2 + pc->lineHeight / 2) * step;
 	while (++y < pc->lineHeight / 2 + HEIGHT / 2)
-		win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
+	{
+		if (side == 'v')
+		{
+			if (win->pc->rayDirX > 0)
+			{
+				win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
+				win->index_color = 0;
+			}
+			else
+			{
+				win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
+				win->index_color = 1;
+			}
+		}
+		else
+		{
+			if (win->pc->rayDirX > 0)
+			{
+				win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
+				win->index_color = 2;
+			}
+			else
+			{
+				win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
+				win->index_color = 3;
+			}
+		}
+	}
+	win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
 	ft_color_sky(pc, win, x);
 	ft_color_floor(pc, win, x);
 }
