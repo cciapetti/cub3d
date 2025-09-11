@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:52:49 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/09 16:25:10 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:17:51 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_rays(t_pc *pc, t_input *input, t_win *win)
 		side = '\0';
 		distance = 0;
 		ft_update_pos_ray(pc, &map_rayx, &map_rayy);
-		ft_compute_deltaDist(pc, x);
+		ft_compute_delta_dist(pc, x);
 		ft_increment_ray(pc);
 		while (pc->hit == 0)
 		{

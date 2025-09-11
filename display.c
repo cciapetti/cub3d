@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 12:02:39 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:16:30 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	ft_color(double *tex_pos, int tex_x, t_win *win, double step)
 		color = win->data_pixel2[3][win->tex_width * tex_y + tex_x];
 	return (color);
 }
-
 
 void	ft_display(t_pc *pc, t_win *win, int x, char side)
 {

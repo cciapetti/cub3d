@@ -6,15 +6,15 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 18:50:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/10 16:23:11 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:19:21 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_compute_deltaDist(t_pc *pc, int x)
+void	ft_compute_delta_dist(t_pc *pc, int x)
 {
-	pc->cameraX = 2*x/(float)WIDTH - 1;
+	pc->cameraX = 2 * x / (float)WIDTH - 1;
 	pc->rayDirX = pc->dirX + pc->planeX * pc->cameraX;
 	pc->rayDirY = -pc->dirY - pc->planeY * pc->cameraX;
 	pc->hit = 0;
@@ -22,11 +22,11 @@ void	ft_compute_deltaDist(t_pc *pc, int x)
 	if (pc->rayDirX == 0)
 		pc->deltaDistX = 1e30;
 	else
-		pc->deltaDistX = fabsf(1/pc->rayDirX);
+		pc->deltaDistX = fabsf(1 / pc->rayDirX);
 	if (pc->rayDirY == 0)
 		pc->deltaDistY = 1e30;
 	else
-		pc->deltaDistY = fabsf(1/pc->rayDirY);
+		pc->deltaDistY = fabsf(1 / pc->rayDirY);
 }
 
 void	ft_increment_ray(t_pc *pc)
