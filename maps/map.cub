@@ -1,11 +1,11 @@
 
-             NO ./textures/path_to_the_north_texture
-                        SO ./textures/path_to_the_south_texture
+             NO ./textures/blue.xpm
+                        SO ./textures/green.xpm
 
-WE            ./textures/path_to_the_west_texture
+WE            ./textures/red.xpm
 
 
- EA ./textures/path_to_the_east_texture
+ EA ./textures/yellow.xpm
                     
 C 255,               30         ,    0        
 F 220,    100,142  

@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 11:45:59 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:05:33 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	ft_clean(void *arg)
 static void	load_images(t_win *win)
 {
 	win->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
-	win->images[0] = mlx_xpm_file_to_image(win->mlx, "./textures/muro_del_bagno.xpm", \
+	win->images[0] = mlx_xpm_file_to_image(win->mlx, win->input->t[0].texture_path, \
 		&win->tex_width, &win->tex_height);
-	win->images[1] = mlx_xpm_file_to_image(win->mlx, "./textures/muro_del_bagno.xpm", \
+	win->images[1] = mlx_xpm_file_to_image(win->mlx, win->input->t[1].texture_path, \
 		&win->tex_width, &win->tex_height);
-	win->images[2] = mlx_xpm_file_to_image(win->mlx, "./textures/muro_del_bagno.xpm", \
+	win->images[2] = mlx_xpm_file_to_image(win->mlx, win->input->t[2].texture_path, \
 		&win->tex_width, &win->tex_height);
-	win->images[3] = mlx_xpm_file_to_image(win->mlx, "./textures/muro_del_bagno.xpm", \
+	win->images[3] = mlx_xpm_file_to_image(win->mlx, win->input->t[3].texture_path, \
 		&win->tex_width, &win->tex_height);
 	win->data_pixel = (int *)mlx_get_data_addr(win->img, &win->bpp, \
 		&win->size_line, &win->endian);

@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 11:45:34 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:02:39 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 		}
 		else
 		{
-			if (win->pc->rayDirX > 0)
+			if (win->pc->rayDirY > 0)
 			{
 				win->data_pixel[y * WIDTH + x] = ft_color(&tex_pos, tex_x, win, step);
 				win->index_color = 2;
