@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:34:57 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/10 16:02:06 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:40:13 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_moves(int key, t_win *win)
 		ft_left(&temp_x, &temp_y, win);
 	else if (key == 100)
 		ft_right(&temp_x, &temp_y, win);
-	printf("posizione: %f %f\n", win->pc->posX, win->pc->posY);
+	// printf("posizione: %f %f\n", win->pc->posX, win->pc->posY);
 	ft_rays(win->pc, win->input, win);
 	mlx_put_image_to_window(win->mlx, win->window, win->img, 0, 0);
 }

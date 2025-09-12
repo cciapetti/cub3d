@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 12:16:13 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:41:33 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_rotation(int key, t_win *win)
 	float	tempx;
 	float	tempy;
 
-	alpha = 0.0872665;
+	alpha = 0.0372665;
 	tempx = win->pc->dirX;
 	tempy = win->pc->dirY;
 	if (key == XK_Left)
@@ -119,7 +119,7 @@ int	main(int argc, char **argv)
 		win.input = &input;
 		ft_read_map(&input, &pc);
 		win.mlx = mlx_init();
-		win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "giochino");
+		win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "cub3d");
 		load_images(&win);
 		ft_rays(&pc, &input, &win);
 		mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
