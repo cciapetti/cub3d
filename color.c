@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:28:24 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 14:40:09 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:54:01 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_color_sky(t_pc *pc, t_win *win, int x)
 	red = win->input->sky.rgb_r;
 	blue = win->input->sky.rgb_b;
 	green = win->input->sky.rgb_g;
-	while (i < (int)HEIGHT / 2 - (int)pc->lineHeight / 2)
+	while (i < (int)HEIGHT / 2 - (int)pc->lineheight / 2)
 	{
 		win->data_pixel[i * WIDTH + x] = red << 16 | green << 8 | blue;
 		i++;
@@ -37,7 +37,7 @@ void	ft_color_floor(t_pc *pc, t_win *win, int x)
 	int	blue;
 	int	green;
 
-	i = (int)HEIGHT / 2 + (int)pc->lineHeight / 2;
+	i = (int)HEIGHT / 2 + (int)pc->lineheight / 2;
 	red = win->input->floor.rgb_r;
 	blue = win->input->floor.rgb_b;
 	green = win->input->floor.rgb_g;

@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 16:18:22 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/04 11:32:01 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 09:35:43 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,16 @@ void	ft_set_structure(t_input *in)
 	in->file = NULL;
 	in->t[0].direction = NULL;
 	in->t[0].texture_path = NULL;
+	in->t[0].t_body = NULL;
 	in->t[1].direction = NULL;
 	in->t[1].texture_path = NULL;
+	in->t[1].t_body = NULL;
 	in->t[2].direction = NULL;
 	in->t[2].texture_path = NULL;
+	in->t[2].t_body = NULL;
 	in->t[3].direction = NULL;
 	in->t[3].texture_path = NULL;
+	in->t[3].t_body = NULL;
 	in->sky.line = NULL;
 	in->floor.line = NULL;
 }

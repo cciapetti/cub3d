@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/12 11:41:14 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:20:13 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_texture
 {
 	char	*direction;
 	char	*texture_path;
+	char	**t_body;
 }	t_texture;
 
 typedef struct s_skyfloor
@@ -63,25 +64,25 @@ typedef struct s_input
 
 typedef struct s_pc
 {
-	float	posX;
-	float	posY;
-	int		mapX;
-	int		mapY;
-	float	dirX;
-	float	dirY;
-	float	planeX;
-	float	planeY;
-	float	cameraX;
-	float	rayDirX;
-	float	rayDirY;
-	float	deltaDistX;
-	float	deltaDistY;
-	float	sideDistX;
-	float	sideDistY;
+	float	posx;
+	float	posy;
+	int		mapx;
+	int		mapy;
+	float	dirx;
+	float	diry;
+	float	planex;
+	float	planey;
+	float	camerax;
+	float	raydirx;
+	float	raydiry;
+	float	deltadistx;
+	float	deltadisty;
+	float	sidedistx;
+	float	sidedisty;
 	int		hit;
-	int		stepX;
-	int		stepY;
-	float	lineHeight;
+	int		stepx;
+	int		stepy;
+	float	lineheight;
 	float	tex_scale;
 }	t_pc;
 
@@ -115,6 +116,7 @@ void	check_east(t_input *in, int *elements, int *indxs, char *dir);
 //CLEAN_PARSING.C
 void	clean_parsing(t_input *in);
 void	ft_free_matrix(char **matrix, int i);
+void	invalid_texture_err(t_win *win);
 //INPUT_FILE.C
 int		ft_get_file_rows(int fd);
 char	**ft_get_file(int fd, int dim);
@@ -148,6 +150,7 @@ void	remove_newlines(t_input *input);
 int		find_char(char *str, char *chars, int flag);
 char	*ft_strdup2(char *s, int len);
 char	**ft_split2(char const *s, char c);
+// int		verify_xpm_texture(char **t);
 //PARSING.C
 int		check_input(int argc, char **argv);
 int		set_elements(int *elements, int toggle);
@@ -162,12 +165,12 @@ void	ft_rays(t_pc *pc, t_input *input, t_win *win);
 void	ft_display(t_pc *pc, t_win *win, int x, char side);
 int		ft_check_map(int map_rayx, int map_rayy, t_input *input);
 //COMPUTATION.C
-void    ft_compute_delta_dist(t_pc *pc, int x);
-void    ft_increment_ray(t_pc *pc);
-void    ft_evaluate_height(t_pc *pc, float distance, char side);
-void    ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side);
+void	ft_compute_delta_dist(t_pc *pc, int x);
+void	ft_increment_ray(t_pc *pc);
+void	ft_evaluate_height(t_pc *pc, float distance, char side);
+void	ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side);
 //MOVES.C
-void    ft_moves(int key, t_win *win);
+void	ft_moves(int key, t_win *win);
 //COLOR.C
 void	ft_color_sky(t_pc *pc, t_win *win, int x);
 void	ft_color_floor(t_pc *pc, t_win *win, int x);

@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 14:52:49 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 12:17:51 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:53:24 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_check_map(int map_rayx, int map_rayy, t_input *input)
 
 void	ft_update_pos_ray(t_pc *pc, int *map_rayx, int *map_rayy)
 {
-	pc->mapX = (int)pc->posX;
-	pc->mapY = (int)pc->posY;
-	*map_rayx = pc->mapX;
-	*map_rayy = pc->mapY;
+	pc->mapx = (int)pc->posx;
+	pc->mapy = (int)pc->posy;
+	*map_rayx = pc->mapx;
+	*map_rayy = pc->mapy;
 }
 
 void	ft_rays(t_pc *pc, t_input *input, t_win *win)
@@ -48,7 +48,7 @@ void	ft_rays(t_pc *pc, t_input *input, t_win *win)
 		ft_increment_ray(pc);
 		while (pc->hit == 0)
 		{
-			if (pc->sideDistX < pc->sideDistY)
+			if (pc->sidedistx < pc->sidedisty)
 				ft_increment_distance('X', pc, &map_rayx, &side);
 			else
 				ft_increment_distance('Y', pc, &map_rayy, &side);

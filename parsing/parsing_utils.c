@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:21:01 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/03 15:30:58 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:17:57 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ int	find_char(char *str, char *chars, int flag)
 		while (chars[++j] != '\0')
 		{
 			if (str[i] == chars[j])
+			{
+				if (flag == 0 && toggle == 1)
+					return (0);
 				toggle = 1;
+			}
 		}
 		if (flag == 1)
 			if (toggle == 0)

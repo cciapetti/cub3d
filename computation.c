@@ -6,7 +6,7 @@
 /*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 18:50:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/11 12:19:21 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/12 11:54:01 by cciapett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,57 @@
 
 void	ft_compute_delta_dist(t_pc *pc, int x)
 {
-	pc->cameraX = 2 * x / (float)WIDTH - 1;
-	pc->rayDirX = pc->dirX + pc->planeX * pc->cameraX;
-	pc->rayDirY = -pc->dirY - pc->planeY * pc->cameraX;
+	pc->camerax = 2 * x / (float)WIDTH - 1;
+	pc->raydirx = pc->dirx + pc->planex * pc->camerax;
+	pc->raydiry = -pc->diry - pc->planey * pc->camerax;
 	pc->hit = 0;
-	pc->lineHeight = 0.0;
-	if (pc->rayDirX == 0)
-		pc->deltaDistX = 1e30;
+	pc->lineheight = 0.0;
+	if (pc->raydirx == 0)
+		pc->deltadistx = 1e30;
 	else
-		pc->deltaDistX = fabsf(1 / pc->rayDirX);
-	if (pc->rayDirY == 0)
-		pc->deltaDistY = 1e30;
+		pc->deltadistx = fabsf(1 / pc->raydirx);
+	if (pc->raydiry == 0)
+		pc->deltadisty = 1e30;
 	else
-		pc->deltaDistY = fabsf(1 / pc->rayDirY);
+		pc->deltadisty = fabsf(1 / pc->raydiry);
 }
 
 void	ft_increment_ray(t_pc *pc)
 {
-	if (pc->rayDirX >= 0)
+	if (pc->raydirx >= 0)
 	{
-		pc->sideDistX = (pc->mapX + 1.0 - pc->posX) * pc->deltaDistX;
-		pc->stepX = 1;
+		pc->sidedistx = (pc->mapx + 1.0 - pc->posx) * pc->deltadistx;
+		pc->stepx = 1;
 	}
 	else
 	{
-		pc->sideDistX = (pc->posX - pc->mapX) * pc->deltaDistX;
-		pc->stepX = -1;
+		pc->sidedistx = (pc->posx - pc->mapx) * pc->deltadistx;
+		pc->stepx = -1;
 	}
-	if (pc->rayDirY >= 0)
+	if (pc->raydiry >= 0)
 	{
-		pc->sideDistY = (pc->mapY + 1.0 - pc->posY) * pc->deltaDistY;
-		pc->stepY = 1;
+		pc->sidedisty = (pc->mapy + 1.0 - pc->posy) * pc->deltadisty;
+		pc->stepy = 1;
 	}
 	else
 	{
-		pc->sideDistY = (pc->posY - pc->mapY) * pc->deltaDistY;
-		pc->stepY = -1;
+		pc->sidedisty = (pc->posy - pc->mapy) * pc->deltadisty;
+		pc->stepy = -1;
 	}
 }
 
 void	ft_evaluate_height(t_pc *pc, float distance, char side)
 {
 	if (side == 'v')
-		distance = pc->sideDistX - pc->deltaDistX;
+		distance = pc->sidedistx - pc->deltadistx;
 	else if (side == 'o')
-		distance = pc->sideDistY - pc->deltaDistY;
-	pc->lineHeight = HEIGHT / distance;
+		distance = pc->sidedisty - pc->deltadisty;
+	pc->lineheight = HEIGHT / distance;
 	pc->tex_scale = 1.0;
-	if (pc->lineHeight > HEIGHT)
+	if (pc->lineheight > HEIGHT)
 	{
-		pc->lineHeight = HEIGHT;
-		pc->tex_scale = (double)HEIGHT / (double) pc->lineHeight;
+		pc->lineheight = HEIGHT;
+		pc->tex_scale = (double)HEIGHT / (double) pc->lineheight;
 	}
 }
 
@@ -72,14 +72,14 @@ void	ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side)
 {
 	if (dir == 'X')
 	{
-		pc->sideDistX += pc->deltaDistX;
-		*map_ray += pc->stepX;
+		pc->sidedistx += pc->deltadistx;
+		*map_ray += pc->stepx;
 		*side = 'v';
 	}
 	else if (dir == 'Y')
 	{
-		pc->sideDistY += pc->deltaDistY;
-		*map_ray += pc->stepY;
+		pc->sidedisty += pc->deltadisty;
+		*map_ray += pc->stepy;
 		*side = 'o';
 	}
 }

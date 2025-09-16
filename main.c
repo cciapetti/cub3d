@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:08:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/12 11:41:33 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:39:54 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ void	ft_rotation(int key, t_win *win)
 	float	tempy;
 
 	alpha = 0.0372665;
-	tempx = win->pc->dirX;
-	tempy = win->pc->dirY;
+	tempx = win->pc->dirx;
+	tempy = win->pc->diry;
 	if (key == XK_Left)
 	{
-		win->pc->dirX = (cos(alpha) * tempx) - (sin(alpha) * tempy);
-		win->pc->dirY = (sin(alpha) * tempx) + (cos(alpha) * tempy);
+		win->pc->dirx = (cos(alpha) * tempx) - (sin(alpha) * tempy);
+		win->pc->diry = (sin(alpha) * tempx) + (cos(alpha) * tempy);
 	}
 	if (key == XK_Right)
 	{
-		win->pc->dirX = (cos(-alpha) * tempx) - (sin(-alpha) * tempy);
-		win->pc->dirY = (sin(-alpha) * tempx) + (cos(-alpha) * tempy);
+		win->pc->dirx = (cos(-alpha) * tempx) - (sin(-alpha) * tempy);
+		win->pc->diry = (sin(-alpha) * tempx) + (cos(-alpha) * tempy);
 	}
-	win->pc->planeX = win->pc->dirY * FOV_SCALE;
-	win->pc->planeY = -win->pc->dirX * FOV_SCALE;
+	win->pc->planex = win->pc->diry * FOV_SCALE;
+	win->pc->planey = -win->pc->dirx * FOV_SCALE;
 	ft_rays(win->pc, win->input, win);
 	mlx_put_image_to_window(win->mlx, win->window, win->img, 0, 0);
 }
@@ -81,7 +81,7 @@ int	ft_clean(void *arg)
 	return (0);
 }
 
-static void	load_images(t_win *win)
+int	load_images(t_win *win)
 {
 	win->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
 	win->images[0] = mlx_xpm_file_to_image(win->mlx, \
@@ -94,6 +94,9 @@ static void	load_images(t_win *win)
 		win->input->t[3].texture_path, &win->tex_width, &win->tex_height);
 	win->data_pixel = (int *)mlx_get_data_addr(win->img, &win->bpp, \
 		&win->size_line, &win->endian);
+	if (!win->images[0] || !win->images[1] || !win->images[2] \
+		|| !win->images[3])
+		return (0);
 	win->data_pixel2[0] = (int *)mlx_get_data_addr(win->images[0], &win->bpp, \
 		&win->size_line, &win->endian);
 	win->data_pixel2[1] = (int *)mlx_get_data_addr(win->images[1], &win->bpp, \
@@ -102,6 +105,7 @@ static void	load_images(t_win *win)
 		&win->size_line, &win->endian);
 	win->data_pixel2[3] = (int *)mlx_get_data_addr(win->images[3], &win->bpp, \
 		&win->size_line, &win->endian);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -120,11 +124,15 @@ int	main(int argc, char **argv)
 		ft_read_map(&input, &pc);
 		win.mlx = mlx_init();
 		win.window = mlx_new_window(win.mlx, WIDTH, HEIGHT, "cub3d");
-		load_images(&win);
-		ft_rays(&pc, &input, &win);
-		mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
-		mlx_hook(win.window, KeyPress, KeyPressMask, ft_press_key, &win);
-		mlx_hook(win.window, 17, 0, ft_clean, &win);
-		mlx_loop(win.mlx);
+		if (load_images(&win) == 0)
+			invalid_texture_err(&win);
+		else
+		{
+			ft_rays(&pc, &input, &win);
+			mlx_put_image_to_window(win.mlx, win.window, win.img, 0, 0);
+			mlx_hook(win.window, KeyPress, KeyPressMask, ft_press_key, &win);
+			mlx_hook(win.window, 17, 0, ft_clean, &win);
+			mlx_loop(win.mlx);
+		}
 	}
 }

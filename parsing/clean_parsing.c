@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 14:58:59 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/04 11:34:19 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:19:39 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,22 @@ void	ft_free_matrix(char **matrix, int i)
 		i++;
 	}
 	free (matrix);
+}
+
+void	invalid_texture_err(t_win *win)
+{
+	message_error(7);
+	mlx_destroy_image(win->mlx, win->img);
+	if (win->images[0])
+		mlx_destroy_image(win->mlx, win->images[0]);
+	if (win->images[1])
+		mlx_destroy_image(win->mlx, win->images[1]);
+	if (win->images[2])
+		mlx_destroy_image(win->mlx, win->images[2]);
+	if (win->images[3])
+		mlx_destroy_image(win->mlx, win->images[3]);
+	mlx_destroy_window(win->mlx, win->window);
+	mlx_destroy_display(win->mlx);
+	clean_parsing(win->input);
+	free(win->mlx);
 }
