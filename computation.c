@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   computation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 18:50:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/12 11:54:01 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:53:09 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	ft_compute_delta_dist(t_pc *pc, int x)
 	if (pc->raydirx == 0)
 		pc->deltadistx = 1e30;
 	else
-		pc->deltadistx = fabsf(1 / pc->raydirx);
+		pc->deltadistx = sqrt(1 + (pc->raydiry * pc->raydiry) / (pc->raydirx * pc->raydirx));
 	if (pc->raydiry == 0)
 		pc->deltadisty = 1e30;
 	else
-		pc->deltadisty = fabsf(1 / pc->raydiry);
+		pc->deltadisty = sqrt(1 + (pc->raydirx * pc->raydirx) / (pc->raydiry * pc->raydiry));
 }
 
 void	ft_increment_ray(t_pc *pc)
@@ -59,13 +59,13 @@ void	ft_evaluate_height(t_pc *pc, float distance, char side)
 		distance = pc->sidedistx - pc->deltadistx;
 	else if (side == 'o')
 		distance = pc->sidedisty - pc->deltadisty;
-	pc->lineheight = HEIGHT / distance;
-	pc->tex_scale = 1.0;
-	if (pc->lineheight > HEIGHT)
-	{
-		pc->lineheight = HEIGHT;
-		pc->tex_scale = (double)HEIGHT / (double) pc->lineheight;
-	}
+	pc->lineheight = (HEIGHT / distance);
+	// pc->tex_scale = 1.0;
+	// if (pc->lineheight > HEIGHT)
+	// {
+	// 	pc->lineheight = (int)HEIGHT;
+	// 	pc->tex_scale = (float)pc->lineheight / (float)HEIGHT;
+	// }
 }
 
 void	ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side)

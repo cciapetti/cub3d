@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/16 11:20:13 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:52:47 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_pc
 	int		hit;
 	int		stepx;
 	int		stepy;
-	float	lineheight;
+	float		lineheight;
 	float	tex_scale;
 }	t_pc;
 
