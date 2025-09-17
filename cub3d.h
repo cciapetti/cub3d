@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/17 16:28:30 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:26:32 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	remove_newlines(t_input *input);
 int		find_char(char *str, char *chars, int flag);
 char	*ft_strdup2(char *s, int len);
 char	**ft_split2(char const *s, char c);
-// int		verify_xpm_texture(char **t);
+void	fix_angles(t_input *in);
 //PARSING.C
 int		check_input(int argc, char **argv);
 int		set_elements(int *elements, int toggle);

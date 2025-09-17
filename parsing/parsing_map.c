@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:32:40 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/08 09:15:43 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:26:17 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	is_closed(t_input *in)
 	}
 	if (closed_updown(in) == 0)
 		return (0);
+	fix_angles(in);
 	return (1);
 }
 

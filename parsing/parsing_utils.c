@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:21:01 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/16 11:17:57 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:28:13 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,19 @@ char	**ft_split2(char const *s, char c)
 		matrix[j++][k] = '\0';
 	}
 	return (matrix[j] = NULL, matrix);
+}
+
+void	fix_angles(t_input *in)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (in->map[++i] != NULL)
+	{
+		j = -1;
+		while (++j < in->map_len)
+			if (in->map[i][j] == '\0')
+				in->map[i][j] = 1;
+	}
 }

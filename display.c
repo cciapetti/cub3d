@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/17 16:47:58 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 17:28:21 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 	double	wallx;
 	double	step;
 
-	// if (pc->lineheight <= 0)
-	// 	return ;
 	win->draw_start = -pc->lineheight / 2 + HEIGHT / 2;
 	if (win->draw_start < 0)
 		win->draw_start = 0;
