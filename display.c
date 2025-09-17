@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/16 16:43:40 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:02:11 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 	double	wallx;
 	double	step;
 
-	// if (pc->lineheight <= 0)
-	// 	return ;
+	if (pc->lineheight <= 0)
+		return ;
 	win->draw_start = -pc->lineheight / 2 + HEIGHT / 2;
 	if (win->draw_start < 0)
 		win->draw_start = 0;
@@ -53,20 +53,13 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 		wallx = pc->posx + (pc->sidedisty - pc->deltadisty) * pc->raydirx;
 	wallx -= floor(wallx);
 	win->tex_x = (int)(wallx * (double)win->tex_width);
-	
-	if (side == 'v' && pc->raydirx > 0)
+	if (side == 'v' && pc->raydirx < 0)
 		win->tex_x = win->tex_width - win->tex_x - 1;
-	if (side == 'o' && pc->raydiry < 0)
+	if (side == 'o' && pc->raydiry > 0)
 		win->tex_x = win->tex_width - win->tex_x - 1;
-	step = (win->tex_height / pc->lineheight);
+	step = (win->tex_height / pc->lineheight) * pc->tex_scale;
 	win->tex_pos = (win->draw_start - HEIGHT / 2 + pc->lineheight / 2) * step;
 	ft_display_exe(win, side, x, step);
 	ft_color_sky(pc, win, x);
 	ft_color_floor(pc, win, x);
 }
-
-
-// tex scale = rapporto fra: lineheight / altezza schermo HEIGHT
-
-
-
