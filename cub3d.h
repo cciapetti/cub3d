@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:09:05 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/16 16:52:47 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:28:30 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ typedef struct s_pc
 	float	camerax;
 	float	raydirx;
 	float	raydiry;
-	float	deltadistx;
-	float	deltadisty;
-	float	sidedistx;
-	float	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
 	int		hit;
 	int		stepx;
 	int		stepy;
@@ -104,6 +104,7 @@ typedef struct s_win
 	int		tex_height;
 	int		index_color;
 	int		draw_start;
+	int		draw_end;
 	double	tex_pos;
 	int		tex_x;
 }	t_win;

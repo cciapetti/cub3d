@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   computation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cciapett <cciapett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 18:50:40 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/12 11:54:01 by cciapett         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:46:23 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	ft_evaluate_height(t_pc *pc, float distance, char side)
 	else if (side == 'o')
 		distance = pc->sidedisty - pc->deltadisty;
 	pc->lineheight = HEIGHT / distance;
-	pc->tex_scale = 1.0;
-	if (pc->lineheight > HEIGHT)
-	{
-		pc->lineheight = HEIGHT;
-		pc->tex_scale = (double)HEIGHT / (double) pc->lineheight;
-	}
+	// pc->tex_scale = 1.0;
+	// if (pc->lineheight > HEIGHT)
+	// {
+	// 	pc->lineheight = HEIGHT;
+	// 	pc->tex_scale = (double)HEIGHT / (double) pc->lineheight;
+	// }
 }
 
 void	ft_increment_distance(char dir, t_pc *pc, int *map_ray, char *side)

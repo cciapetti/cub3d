@@ -1,9 +1,9 @@
-             NO ./textures/blue.xpm
-                        SO ./textures/green.xpm
+             NO ./textures/northblue.xpm
+                        SO ./textures/southgreen.xpm
 
-WE ./textures/red.xpm
+WE ./textures/westred.xpm
 
- EA ./textures/yellow.xpm
+ EA ./textures/eastyellow.xpm
 
 F 102, 204, 102
 C 128, 193, 255

@@ -1,10 +1,9 @@
-NO ./textures/path_to_the_north_texture
-                        SO ./textures/path_to_the_south_texture
+             NO ./textures/northblue.xpm
+                        SO ./textures/southgreen.xpm
 
-WE ./textures/path_to_the_west_texture
+WE ./textures/westred.xpm
 
-
- EA ./textures/path_to_the_east_texture
+ EA ./textures/eastyellow.xpm
                     
 F 220,100,0
 C 225,30,0

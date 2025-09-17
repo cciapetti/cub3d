@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:29:20 by cciapett          #+#    #+#             */
-/*   Updated: 2025/09/17 16:02:11 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/17 16:47:58 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_display_exe(t_win *win, char side, int x, double step)
 	int	y;
 
 	y = win->draw_start - 1;
-	while (++y < win->pc->lineheight / 2 + HEIGHT / 2)
+	while (++y < win->draw_end)
 	{
 		if (side == 'v')
 		{
@@ -42,22 +42,25 @@ void	ft_display(t_pc *pc, t_win *win, int x, char side)
 	double	wallx;
 	double	step;
 
-	if (pc->lineheight <= 0)
-		return ;
+	// if (pc->lineheight <= 0)
+	// 	return ;
 	win->draw_start = -pc->lineheight / 2 + HEIGHT / 2;
 	if (win->draw_start < 0)
 		win->draw_start = 0;
+	win->draw_end = pc->lineheight / 2 + HEIGHT / 2;
+	if (win->draw_end >= HEIGHT)
+		win->draw_end = HEIGHT - 1;
 	if (side == 'v')
 		wallx = pc->posy + (pc->sidedistx - pc->deltadistx) * pc->raydiry;
 	else
 		wallx = pc->posx + (pc->sidedisty - pc->deltadisty) * pc->raydirx;
 	wallx -= floor(wallx);
 	win->tex_x = (int)(wallx * (double)win->tex_width);
-	if (side == 'v' && pc->raydirx < 0)
+	if (side == 'v' && pc->raydirx > 0)
 		win->tex_x = win->tex_width - win->tex_x - 1;
-	if (side == 'o' && pc->raydiry > 0)
+	if (side == 'o' && pc->raydiry < 0)
 		win->tex_x = win->tex_width - win->tex_x - 1;
-	step = (win->tex_height / pc->lineheight) * pc->tex_scale;
+	step = (win->tex_height / pc->lineheight);
 	win->tex_pos = (win->draw_start - HEIGHT / 2 + pc->lineheight / 2) * step;
 	ft_display_exe(win, side, x, step);
 	ft_color_sky(pc, win, x);

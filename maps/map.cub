@@ -1,11 +1,9 @@
+             NO ./textures/northblue.xpm
+                        SO ./textures/southgreen.xpm
 
-             NO ./textures/blue.xpm
-                        SO ./textures/green.xpm
+WE ./textures/westred.xpm
 
-WE            ./textures/red.xpm
-
-
- EA ./textures/yellow.xpm
+ EA ./textures/eastyellow.xpm
                     
 C 255,               30         ,    0        
 F 220,    100,142  
