@@ -6,7 +6,7 @@
 /*   By: yoherfan <yoherfan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:21:01 by yoherfan          #+#    #+#             */
-/*   Updated: 2025/09/17 17:28:13 by yoherfan         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:48:00 by yoherfan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ void	fix_angles(t_input *in)
 		j = -1;
 		while (++j < in->map_len)
 			if (in->map[i][j] == '\0')
-				in->map[i][j] = 1;
+				in->map[i][j] = '1';
 	}
 }
