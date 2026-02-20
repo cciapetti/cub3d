@@ -1,7 +1,5 @@
 # Cub-3D
 
-Questo progetto è un'esplorazione dei frattali di Mandelbrot e Julia, renderizzati utilizzando la libreria MiniLibX.
-
 ![Dimostrazione di Cub-3D](cub3d.gif)
 
 ## Descrizione
